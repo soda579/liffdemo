@@ -60,9 +60,30 @@
 
     async function getFriendship() {}
 
-    async function sendMsg() {}
+    async function sendMsg() {
+      //1
+      if (liff.getContext().type !== "none") {
+        await liff.sendMessages([{
+          "type": "sticker",
+          "stickerId": 1,
+          "packageId": 1
+        }])
+        alert("Message sent")
+      }
+    }
 
-    function getContext() {}
+    function getContext() {
+      //1
+      if (liff.getContext() != null) {
+        document.getElementById("type").append(liff.getContext().type)
+        document.getElementById("viewType").append(liff.getContext().viewType)
+        document.getElementById("utouId").append(liff.getContext().utouId)
+        document.getElementById("roomId").append(liff.getContext().roomId)
+        document.getElementById("groupId").append(liff.getContext().groupId)
+      }
+      //2
+
+    }
 
     async function getUserProfile() {
       //Console
@@ -100,7 +121,7 @@
       })
       getEnvironment()
       getUserProfile()
-      // getContext()
+      getContext()
       // getFriendship()
       // createUniversalLink()
     }
