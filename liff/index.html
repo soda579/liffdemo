@@ -64,9 +64,35 @@
 
     function getContext() {}
 
-    async function getUserProfile() {}
+    async function getUserProfile() {
+      //Console
+      //1
+      const profile = await liff.getProfile()
+      //2
+      document.getElementById("pictureUrl").src = profile.pictureUrl
+      document.getElementById("userId").append(profile.userId)
+      document.getElementById("statusMessage").append(profile.statusMessage)
+      document.getElementById("displayName").append(profile.displayName)
+      document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+    }
 
-    function getEnvironment() {}
+    function getEnvironment() {
+      //1
+      document.getElementById("os").append(liff.getOS())
+      document.getElementById("language").append(liff.getLanguage())
+      document.getElementById("version").append(liff.getVersion())
+      document.getElementById("accessToken").append(liff.getAccessToken())
+      document.getElementById("isInClient").append(liff.isInClient())
+      //2
+      if (liff.isInClient()) {
+        document.getElementById("btnLogOut").style.display = "none"
+      } else {
+        //External Browser
+        document.getElementById("btnMsg").style.display = "none"
+        document.getElementById("btnScanCode").style.display = "none"
+        document.getElementById("btnClose").style.display = "none"
+      }
+    }
 
     async function main() {
       await liff.init({
@@ -78,6 +104,7 @@
       // getFriendship()
       // createUniversalLink()
     }
+    //สั่ง main ให้รัน
     main()
   </script>
 </body>
